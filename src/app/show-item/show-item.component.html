@@ -1,11 +1,20 @@
-<ScrollLayout *ngFor="let med of show" class="p-20 med-card">
-    <StackLayout >
+<ScrollLayout *ngFor="let med of show" >
+<StackLayout class="med-card">
+    <FlexboxLayout flexDirection="row" justifyContent="space-between" >
         <Label [text]="med.title"  class="title"></Label>
+        <Label [text]="'time: '+med.time" class="time"></Label>
+    </FlexboxLayout>
+    <StackLayout>
         <Label [text]="med.description" class="subtitle"></Label>
     </StackLayout>
-    <StackLayout orientation="horizontal">
-        <Label [text]="med.date" class="date"></Label>
-        <Label [text]="med.today" class="today"></Label>
-        <Label [text]="med.time" class="time"></Label>
+    <StackLayout orientation="horizontal" class="when">
+        <StackLayout orientation="horizontal" class="first">
+            <Label [text]="'start: '+med.date" class="date"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <Label [text]="'end: '+med.today" class="today"></Label>
+        </StackLayout>
     </StackLayout>
+</StackLayout>
 </ScrollLayout>
+

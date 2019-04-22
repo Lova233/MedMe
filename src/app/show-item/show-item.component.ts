@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MedsServices } from '~/meds-service';
 
+
 @Component({
   selector: 'ns-show-item',
   templateUrl: './show-item.component.html',
@@ -18,5 +19,4 @@ export class ShowItemComponent implements OnInit {
   ngOnInit() {
     this.show = this.medsService.getNewMeds()
   }
-
 }

@@ -12,10 +12,11 @@ import { Page } from 'tns-core-modules/ui/page/page';
 export class TabViewComponent implements OnInit {
 
   constructor(
-
-  ) {
+    private page: Page,) {
 
    }
   ngOnInit() {
+    this.page.actionBarHidden = true;
+
   }
 }

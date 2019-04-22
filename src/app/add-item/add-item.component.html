@@ -1,6 +1,7 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd">
-    <FlexboxLayout class="form" flexDirection="column">
-      <StackLayout class="input-field">
+    <FlexboxLayout class="form" flexDirection="column" justifyItem="space-between ">
+        <label text="Add your medication" class="main-title"></label>
+    <StackLayout class="input-field">
         <Label
           class="label"
           text="Title"
@@ -44,9 +45,6 @@
           [(ngModel)]="time"
           >
         </TimePickerField>
-        <Label text="custom button" class="content"></Label>
-        <Button [text]="dateText" (tap)="onPickDateTap($event)"></Button>
-        <Button [text]="timeText" (tap)="onPickTimeTap($event)"></Button>
     </StackLayout>
       <Button
         class="btn btn-primary"
@@ -55,4 +53,4 @@
       ></Button>
       <Label [text]="time"></Label>
     </FlexboxLayout>
-    </Page>
+</Page>

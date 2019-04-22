@@ -1,8 +1,24 @@
 /* Add mobile styles for the component here.  */
+.med-card{
+    padding:10 20 20 20;
+}
+
 .title{
     font-size: 30;
+    font-weight: bold;
+}
+
+.time{
+    margin-top: 20;
 }
 
 .subtitle{
     font-size: 20;
+    padding: 5 0 5 0;
+}
+.when{
+    padding: 5 0 5 0;
+}
+.first{
+    margin-right: 15;
 }

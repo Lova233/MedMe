@@ -20,14 +20,12 @@ export class NotificationService {
 
 
   schedule(x): void {
-      console.log(new Date(x.date),"AAAAAA")
-      console.log(new Date(new Date().getTime() + 10 * 1000))
     LocalNotifications.schedule(
         [{
           id: 5,
           thumbnail: true,
-          title: x.title,
-          body: x.description,
+          title:  x.title,
+          body:  x.description,
           forceShowWhenInForeground: true,
           at: x.date,
           actions: [
@@ -42,17 +40,17 @@ export class NotificationService {
               // choices: ["Red", "Yellow", "Green"] // TODO Android only, but yet to see it in action
             }
           ]
-        }]
-        )
+        }])
         .then(() => {
           alert({
             title: "Notification scheduled",
-            message: "ID: 5",
+            message: "ID: 55",
             okButtonText: "OK, thanks"
           });
         })
         .catch(error => console.log("doScheduleId5WithInput error: " + error));
-    }
+  }
+}
 
   // createNewChallenge(title: string, description: string, frequency:number[]) {
   //   const newChallenge = new Challenge(
@@ -95,4 +93,3 @@ export class NotificationService {
   //     // Save this to a server
   //   });
   // }
-}
