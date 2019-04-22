@@ -32,9 +32,30 @@ export class MedsServices {
 
   }
 
-  getNewMeds(meds){
-    return this.http.get<any>('https://mymeds-21e9a.firebaseio.com/mymeds.json')
-  }
+  getNewMeds(){
+    // return this.http.get<any>('https://mymeds-21e9a.firebaseio.com/mymeds.json')
+return   [{
+    title:'Augumentin',
+    description:'Take empty stomach',
+    today: '22/04/2019',
+    date: '29/04/2019',
+    time:'16:00'
+   },{
+    title:'Maloox',
+    description:'Do not take with alcool',
+    today: '23/04/2019',
+    date: '28/04/2019',
+    time:'12:00'
+   },
+   {
+    title:'Eye Drops',
+    description:'2 drop each eye',
+    today: '28/04/2019',
+    date: '3/05/2019',
+    time:'18:00'
+   }
+]
+}
 
 
 
