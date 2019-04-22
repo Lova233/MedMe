@@ -16,7 +16,7 @@ export class ShowItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.show = this.medsService.getNewMeds(this.show)
+    this.show = this.medsService.getNewMeds()
   }
 
 }

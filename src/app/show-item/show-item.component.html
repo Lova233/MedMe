@@ -1,7 +1,9 @@
-<ScrollLayout>
-    <StackLayout *ngFor="let med of currentMeds" class="p-20 med-card">
+<ScrollLayout *ngFor="let med of show" class="p-20 med-card">
+    <StackLayout >
         <Label [text]="med.title"  class="title"></Label>
         <Label [text]="med.description" class="subtitle"></Label>
+    </StackLayout>
+    <StackLayout orientation="horizontal">
         <Label [text]="med.date" class="date"></Label>
         <Label [text]="med.today" class="today"></Label>
         <Label [text]="med.time" class="time"></Label>
