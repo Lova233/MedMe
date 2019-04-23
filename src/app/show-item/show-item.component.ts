@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MedsServices } from '~/meds-service';
 
 
@@ -10,13 +10,15 @@ import { MedsServices } from '~/meds-service';
 })
 export class ShowItemComponent implements OnInit {
     items:any;
-    show:any;
+    @Input()meds:any;
 
     constructor(
-    private medsService: MedsServices,
   ) { }
 
   ngOnInit() {
-    this.show = this.medsService.getNewMeds()
+      setTimeout(() => {
+        console.log(this.meds,"i meds")
+      }, 3000);
+
   }
 }

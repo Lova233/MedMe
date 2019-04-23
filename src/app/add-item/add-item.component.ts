@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MedsServices } from '~/meds-service';
 import { NotificationService } from '~/notification-service';
 
@@ -15,6 +15,7 @@ export class AddItemComponent implements OnInit {
     isCreating:boolean = true;
     title:string = '';
     description:string = '';
+    @Output() refresh: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private medsService: MedsServices,
@@ -36,7 +37,8 @@ export class AddItemComponent implements OnInit {
          time: time,
         }
         this.medsService.addNewMeds(x)
-        this.notificationService.schedule(x)
+        this.refresh.emit();
+
     }
 }
 

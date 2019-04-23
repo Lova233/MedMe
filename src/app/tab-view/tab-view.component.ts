@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from 'tns-core-modules/ui/page/page';
+import { MedsServices } from '~/meds-service';
 
 @Component({
   selector: 'ns-tab-view',
@@ -11,12 +12,26 @@ import { Page } from 'tns-core-modules/ui/page/page';
 })
 export class TabViewComponent implements OnInit {
 
+    show:Array<any> = [];
+
   constructor(
-    private page: Page,) {
-
-   }
-  ngOnInit() {
+    private page: Page,
+    public medsService: MedsServices,
+    ) {
     this.page.actionBarHidden = true;
-
+}
+  ngOnInit() {
+    this.refreshData();
   }
+
+
+  refreshData(){
+    this.medsService.getNewMeds().subscribe((x)=> {
+        for(let key in x){
+        this.show.push(x[key])
+    }
+    console.log("fatto") }
+    )
+  }
+
 }

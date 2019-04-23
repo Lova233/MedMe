@@ -1,20 +1,43 @@
-<ScrollLayout *ngFor="let med of show" >
-<StackLayout class="med-card">
+<!--
+<ScrollView  *ngFor="let item of show" orientation="vertical">
+<StackLayout class="med-card" height="120">
     <FlexboxLayout flexDirection="row" justifyContent="space-between" >
-        <Label [text]="med.title"  class="title"></Label>
-        <Label [text]="'time: '+med.time" class="time"></Label>
+        <Label [text]="item.title"  class="title"></Label>
+        <Label [text]="'time: ' + item.time" class="time"></Label>
     </FlexboxLayout>
     <StackLayout>
-        <Label [text]="med.description" class="subtitle"></Label>
+        <Label [text]="item.description" class="subtitle"></Label>
     </StackLayout>
     <StackLayout orientation="horizontal" class="when">
         <StackLayout orientation="horizontal" class="first">
-            <Label [text]="'start: '+med.date" class="date"></Label>
+            <Label [text]="'start: '+ item.date" class="date"></Label>
         </StackLayout>
         <StackLayout orientation="horizontal">
-            <Label [text]="'end: '+med.today" class="today"></Label>
+            <Label [text]="'end: '+ item.today" class="today"></Label>
         </StackLayout>
     </StackLayout>
 </StackLayout>
-</ScrollLayout>
+</ScrollView> -->
 
+
+<ListView [items]="meds">
+    <ng-template let-med="item">
+            <StackLayout class="med-card" height="120">
+                    <FlexboxLayout flexDirection="row" justifyContent="space-between" >
+                        <Label [text]="med.title"  class="title"></Label>
+                        <Label [text]="'time: ' + med.time" class="time"></Label>
+                    </FlexboxLayout>
+                    <StackLayout>
+                        <Label [text]="med.description" class="subtitle"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="when">
+                        <StackLayout orientation="horizontal" class="first">
+                            <Label [text]="'start: '+ med.date" class="date"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label [text]="'end: '+ med.today" class="today"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+    </ng-template>
+</ListView>

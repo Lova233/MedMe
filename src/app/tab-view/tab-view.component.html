@@ -2,9 +2,9 @@
   androidSelectedTabHighlightColor="purple"
   selectedTabTextColor="purple">
     <StackLayout *tabItem="{ title: 'Today' }">
-      <ns-show-item></ns-show-item>
+      <ns-show-item [meds]="show"></ns-show-item>
     </StackLayout>
     <StackLayout *tabItem="{ title: 'Add Medication' }">
-      <ns-add-item> </ns-add-item>
+      <ns-add-item  (refresh)="refreshData($event)"> </ns-add-item>
     </StackLayout>
 </TabView>

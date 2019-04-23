@@ -12,7 +12,8 @@ import { LocalNotifications } from "nativescript-local-notifications";
 
 
 export class NotificationService {
- constructor(){
+    id:any;
+    constructor(){
     LocalNotifications.addOnMessageReceivedCallback(notificationData => {
         console.log("Notification received: " + JSON.stringify(notificationData));
       });
@@ -20,18 +21,24 @@ export class NotificationService {
 
 
   schedule(x): void {
+    LocalNotifications.getScheduledIds().then(
+        function(ids:number[]) {
+          console.log(ids,"before");
+        }
+    )
     LocalNotifications.schedule(
         [{
-          id: 5,
+          id: + new Date(),
           thumbnail: true,
           title:  x.title,
           body:  x.description,
           forceShowWhenInForeground: true,
-          at: x.date,
+          at: new Date(x.date),
+          image: "https://cdn-images-1.medium.com/max/1200/1*c3cQvYJrVezv_Az0CoDcbA.jpeg",
           actions: [
             {
               id: "input-richard",
-              type: "input",
+              type: "button",
               title: "Tap here to reply",
               placeholder: "Type to reply..",
               submitLabel: "Reply",
@@ -40,7 +47,9 @@ export class NotificationService {
               // choices: ["Red", "Yellow", "Green"] // TODO Android only, but yet to see it in action
             }
           ]
-        }])
+
+        }]
+        )
         .then(() => {
           alert({
             title: "Notification scheduled",
@@ -48,7 +57,13 @@ export class NotificationService {
             okButtonText: "OK, thanks"
           });
         })
+
+
         .catch(error => console.log("doScheduleId5WithInput error: " + error));
+        // LocalNotifications.getScheduledIds().then(
+        //     function(ids:number[]) {
+        //       console.log(ids.length-1,"after");
+        //     })
   }
 }
 
