@@ -1,25 +1,3 @@
-<!--
-<ScrollView  *ngFor="let item of show" orientation="vertical">
-<StackLayout class="med-card" height="120">
-    <FlexboxLayout flexDirection="row" justifyContent="space-between" >
-        <Label [text]="item.title"  class="title"></Label>
-        <Label [text]="'time: ' + item.time" class="time"></Label>
-    </FlexboxLayout>
-    <StackLayout>
-        <Label [text]="item.description" class="subtitle"></Label>
-    </StackLayout>
-    <StackLayout orientation="horizontal" class="when">
-        <StackLayout orientation="horizontal" class="first">
-            <Label [text]="'start: '+ item.date" class="date"></Label>
-        </StackLayout>
-        <StackLayout orientation="horizontal">
-            <Label [text]="'end: '+ item.today" class="today"></Label>
-        </StackLayout>
-    </StackLayout>
-</StackLayout>
-</ScrollView> -->
-
-
 <ListView [items]="meds">
     <ng-template let-med="item">
             <StackLayout class="med-card" height="120">
