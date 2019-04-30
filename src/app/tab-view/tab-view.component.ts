@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { MedsServices } from '~/meds-service';
 
+
+
 @Component({
   selector: 'ns-tab-view',
   templateUrl: './tab-view.component.html',
@@ -26,12 +28,15 @@ export class TabViewComponent implements OnInit {
 
 
   refreshData(){
-    this.medsService.getNewMeds().subscribe((x)=> {
-        for(let key in x){
-        this.show.push(x[key])
-    }
-    console.log("fatto") }
-    )
+      setTimeout(() => {
+        this.medsService.getNewMeds().subscribe((x)=> {
+            for(let key in x){
+            this.show.push(x[key])
+        }
+        console.log("fatto") }
+        )
+      }, 2000);
+
   }
 
 }

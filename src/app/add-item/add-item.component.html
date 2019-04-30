@@ -20,7 +20,7 @@
         ></Label>
         <TextView
           class="input"
-          returnKeyType="done"
+          returnKeyType="next"
           required
           [(ngModel)]="description"
         ></TextView>
@@ -33,6 +33,7 @@
           <DatePickerField
           class="input"
           [(ngModel)]="date"
+          returnKeyType="next"
           >
           </DatePickerField>
           <Label
@@ -43,6 +44,7 @@
           <TimePickerField
           class="input"
           [(ngModel)]="time"
+          returnKeyType="next"
           >
         </TimePickerField>
     </StackLayout>

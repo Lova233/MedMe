@@ -28,7 +28,7 @@ export class NotificationService {
     )
     LocalNotifications.schedule(
         [{
-          id: + new Date(),
+          id: x.created,
           thumbnail: true,
           title:  x.title,
           body:  x.description,
@@ -59,12 +59,27 @@ export class NotificationService {
         })
 
 
+
+
         .catch(error => console.log("doScheduleId5WithInput error: " + error));
+
         // LocalNotifications.getScheduledIds().then(
         //     function(ids:number[]) {
         //       console.log(ids.length-1,"after");
         //     })
   }
+        cancel(x){
+            LocalNotifications.cancel(x).then(
+                function(foundAndCanceled) {
+                    if (foundAndCanceled) {
+                    console.log("OK, it's gone!");
+                    } else {
+                    console.log("No ID 5 was scheduled");
+                    }
+                }
+            )
+        }
+
 }
 
   // createNewChallenge(title: string, description: string, frequency:number[]) {

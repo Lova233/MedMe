@@ -20,7 +20,7 @@ export class MedsServices {
 
 
   addNewMeds(x){
-    this.http.put('https://mymeds-21e9a.firebaseio.com/mymeds/'+ +new Date() + '.json',x)
+    this.http.put('https://mymeds-21e9a.firebaseio.com/mymeds/'+ x.created + '.json',x)
     .subscribe(res => {
         console.log(res);
     });
@@ -30,8 +30,12 @@ export class MedsServices {
 
   getNewMeds(){
     return this.http.get<any[]>('https://mymeds-21e9a.firebaseio.com/mymeds.json')
-
-}
+    }
+ deleteMeds(param){
+    this.http.delete('https://mymeds-21e9a.firebaseio.com/mymeds/'+ param  + '.json').subscribe(res => {
+        console.log(res);
+    });
+    }
 
 
 

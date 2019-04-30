@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MedsServices } from '~/meds-service';
 import { NotificationService } from '~/notification-service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -38,9 +39,12 @@ export class AddItemComponent implements OnInit {
         let a = {
             title:title,
             description:description,
-            date: new Date(this.today.setDate(this.today.getDate()+i))
+            date: moment().add(i,"d")
         }
+        this.notificationService.schedule(a)
+        console.log(i,a,"il tempo")
          }
+
          date = this.formatDate(date)
          let x = {
          title,
@@ -48,10 +52,16 @@ export class AddItemComponent implements OnInit {
          date: date,
          today: this.formatDate(new Date),
          time: humanHuour,
+         created: +new Date
         }
         this.medsService.addNewMeds(x)
-        this.refresh.emit();
+        // this.refresh.emit();
         alert("New Medication added")
+        this.title = ""
+        this.description = ""
+        this.time = undefined
+        this.date = undefined
+
         }
     formatDate(date) {
         var d = new Date(date),

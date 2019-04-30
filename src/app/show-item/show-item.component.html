@@ -1,4 +1,4 @@
-<ListView [items]="meds">
+<ListView [items]="meds" (itemTap)="onItemTap($event)">
     <ng-template let-med="item">
             <StackLayout class="med-card" height="120">
                     <FlexboxLayout flexDirection="row" justifyContent="space-between" >
@@ -10,15 +10,15 @@
                     </StackLayout>
                     <StackLayout orientation="horizontal" class="when">
                         <StackLayout orientation="horizontal" class="first">
-                            <Label [text]="'start: '+ med.date" class="date"></Label>
+                            <Label [text]="'start: '+ med.today" class="date"></Label>
                         </StackLayout>
                         <StackLayout orientation="horizontal">
-                            <Label [text]="'end: '+ med.today" class="today"></Label>
+                            <Label [text]="'end: '+ med.date" class="today"></Label>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
     </ng-template>
 </ListView>
 <FlexboxLayout justifyItem="center" alignItems="center"  >
-    <Label text="No medication found, please add one" *ngIf="meds.lenght == 0"></Label>
+    <Label text="No medication found, please add one" *ngIf="meds.length == 0"></Label>
 </FlexboxLayout>
