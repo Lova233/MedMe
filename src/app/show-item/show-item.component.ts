@@ -16,9 +16,6 @@ export class ShowItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      setTimeout(() => {
-        console.log(this.meds,"i meds")
-      }, 3000);
-
+    console.log(this.meds.length,"i meds")
   }
 }

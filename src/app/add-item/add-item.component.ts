@@ -10,6 +10,8 @@ import { NotificationService } from '~/notification-service';
   moduleId: module.id,
 })
 export class AddItemComponent implements OnInit {
+    today:Date = new Date()
+    notificationRange:any=[{}];
     date:any;
     time:any;
     isCreating:boolean = true;
@@ -26,19 +28,43 @@ export class AddItemComponent implements OnInit {
  ngOnInit() {}
 
  onSubmit(title: string, description: string, date:any, time:any) {
-     let hour = time.getHours()
-     let minutes = time.getMinutes()
-     date = new Date(date.setHours(hour,minutes)).toString()
+     let hour = time.getHours();
+     let minutes = time.getMinutes();
+     let humanHuour = hour + ':' + (minutes < 10 ? '0' : '') + minutes
+     let i
+     let num = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ) /(1000 * 60 * 60 * 24));
+     console.log(num,"quante volte")
+     for(i=0;i<=num;i++){
+        let a = {
+            title:title,
+            description:description,
+            date: new Date(this.today.setDate(this.today.getDate()+i))
+        }
+         }
+         date = this.formatDate(date)
          let x = {
          title,
          description,
-         today: new Date(),
          date: date,
-         time: time,
+         today: this.formatDate(new Date),
+         time: humanHuour,
         }
         this.medsService.addNewMeds(x)
         this.refresh.emit();
+        alert("New Medication added")
+        }
+    formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
 
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [day,month,year ].join('-');
     }
 }
+
+
 

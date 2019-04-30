@@ -19,3 +19,6 @@
                 </StackLayout>
     </ng-template>
 </ListView>
+<FlexboxLayout justifyItem="center" alignItems="center"  >
+    <Label text="No medication found, please add one" *ngIf="meds.lenght == 0"></Label>
+</FlexboxLayout>
