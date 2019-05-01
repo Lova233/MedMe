@@ -5,8 +5,6 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { ItemsComponent } from "./item/items.component";
-import { ItemDetailComponent } from "./item/item-detail.component";
 import { TabView } from "tns-core-modules/ui/tab-view";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -34,8 +32,6 @@ import { ShowItemComponent } from './show-item/show-item.component';
     ],
     declarations: [
         AppComponent,
-        ItemsComponent,
-        ItemDetailComponent,
         TabViewComponent,
         AddItemComponent,
         ShowItemComponent

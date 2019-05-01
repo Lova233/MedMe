@@ -5,6 +5,7 @@ import { Meds } from './meds-model';
 import { HttpClient } from '@angular/common/http'
 import { catchError } from 'rxjs/operators';
 import { LocalNotifications } from "nativescript-local-notifications";
+import { minuteIntervalProperty } from 'tns-core-modules/ui/time-picker/time-picker';
 
 
 
@@ -18,30 +19,24 @@ export class NotificationService {
         console.log("Notification received: " + JSON.stringify(notificationData));
       });
  }
-
-
   schedule(x): void {
-    LocalNotifications.getScheduledIds().then(
-        function(ids:number[]) {
-          console.log(ids,"before");
-        }
-    )
+    let at = new Date(x.date.setHours(x.time.getHours(),x.time.getMinutes()))
+    let id:number = x.id
+    console.log(id,"QUELLO CHE ARRIVA")
     LocalNotifications.schedule(
         [{
-          id: x.created,
+          id: id,
           thumbnail: true,
           title:  x.title,
           body:  x.description,
           forceShowWhenInForeground: true,
-          at: new Date(x.date),
+          interval: "second",
+          at: at,
           image: "https://cdn-images-1.medium.com/max/1200/1*c3cQvYJrVezv_Az0CoDcbA.jpeg",
           actions: [
             {
               id: "input-richard",
               type: "button",
-              title: "Tap here to reply",
-              placeholder: "Type to reply..",
-              submitLabel: "Reply",
               launch: true,
               editable: true,
               // choices: ["Red", "Yellow", "Green"] // TODO Android only, but yet to see it in action
@@ -50,23 +45,14 @@ export class NotificationService {
 
         }]
         )
-        .then(() => {
-          alert({
-            title: "Notification scheduled",
-            message: "ID: 55",
-            okButtonText: "OK, thanks"
-          });
-        })
+        .then(() => {}).catch(error => console.log("doScheduleId5WithInput error: " + error));
 
 
 
 
-        .catch(error => console.log("doScheduleId5WithInput error: " + error));
 
-        // LocalNotifications.getScheduledIds().then(
-        //     function(ids:number[]) {
-        //       console.log(ids.length-1,"after");
-        //     })
+
+
   }
         cancel(x){
             LocalNotifications.cancel(x).then(
@@ -78,9 +64,22 @@ export class NotificationService {
                     }
                 }
             )
+            // LocalNotifications.getScheduledIds().then(
+            //     function(ids:number[]) {
+            //       console.log(ids.length-1,"dopo cancellarne");
+            //     }
         }
-
+        cancelAll(){
+            LocalNotifications.cancelAll();
+        }
+        getAll(){
+            LocalNotifications.getScheduledIds().then(
+                function(ids:number[]) {
+                  console.log(ids,"the one");
+                })
+        }
 }
+
 
   // createNewChallenge(title: string, description: string, frequency:number[]) {
   //   const newChallenge = new Challenge(

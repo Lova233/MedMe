@@ -27,6 +27,13 @@ export class ShowItemComponent implements OnInit {
   }
 
   onItemTap(args) {
+    let num = this.meds[args.index].repetition
+    console.log(num,"IL NUM")
+    let i
+    for(i=0;i<=num;i++){
+        console.log("giro",i)
+    }
+
     dialogs.action({
         message: "Do you want to delete the medication   " + this.meds[args.index].title + "  ?",
         cancelButtonText: "Exit",

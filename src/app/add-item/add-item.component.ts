@@ -33,16 +33,19 @@ export class AddItemComponent implements OnInit {
      let minutes = time.getMinutes();
      let humanHuour = hour + ':' + (minutes < 10 ? '0' : '') + minutes
      let i
+     let notificationIds = []
      let num = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ) /(1000 * 60 * 60 * 24));
-     console.log(num,"quante volte")
      for(i=0;i<=num;i++){
         let a = {
             title:title,
             description:description,
-            date: moment().add(i,"d")
+            time:time,
+            date: moment().add(i,"d").toDate(),
+            id: + new Date,
         }
+        notificationIds.push(a.id)
         this.notificationService.schedule(a)
-        console.log(i,a,"il tempo")
+        console.log(typeof a.id,"TYPE OF")
          }
 
          date = this.formatDate(date)
@@ -52,7 +55,9 @@ export class AddItemComponent implements OnInit {
          date: date,
          today: this.formatDate(new Date),
          time: humanHuour,
-         created: +new Date
+         created: +new Date,
+         ids: notificationIds,
+         repetition:num,
         }
         this.medsService.addNewMeds(x)
         // this.refresh.emit();
@@ -61,6 +66,7 @@ export class AddItemComponent implements OnInit {
         this.description = ""
         this.time = undefined
         this.date = undefined
+        console.log(x,"QUELLA NEL DATABASE")
 
         }
     formatDate(date) {
@@ -73,6 +79,13 @@ export class AddItemComponent implements OnInit {
         if (day.length < 2) day = '0' + day;
 
         return [day,month,year ].join('-');
+    }
+
+    cancel(){
+        this.notificationService.cancelAll()
+    }
+    get(){
+        this.notificationService.getAll()
     }
 }
 
