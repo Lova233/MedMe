@@ -14,7 +14,7 @@ import { MedsServices } from '~/meds-service';
 })
 export class TabViewComponent implements OnInit {
 
-    show:Array<any> = [];
+show:Array<any> = [];
 
   constructor(
     private page: Page,
@@ -23,20 +23,18 @@ export class TabViewComponent implements OnInit {
     this.page.actionBarHidden = true;
 }
   ngOnInit() {
-    this.refreshData();
-  }
+    this.medsService.getNewMeds().subscribe((x)=> {
+        for(let key in x){
+        this.show.push(x[key])
+    }
+    console.log("fatto") }
+    )
+}
 
 
-  refreshData(){
-      setTimeout(() => {
-        this.medsService.getNewMeds().subscribe((x)=> {
-            for(let key in x){
-            this.show.push(x[key])
-        }
-        console.log("fatto") }
-        )
-      }, 2000);
-
-  }
-
+  refreshData(x){
+    console.log(this.show,"prima")
+    this.show.push(x)
+    console.log(this.show,"dopo")
+    }
 }

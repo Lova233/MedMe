@@ -22,7 +22,7 @@ export class MedsServices {
   addNewMeds(x){
     this.http.put('https://mymeds-21e9a.firebaseio.com/mymeds/'+ x.created + '.json',x)
     .subscribe(res => {
-        console.log(res);
+        console.log(res,"resssss");
     });
 
 

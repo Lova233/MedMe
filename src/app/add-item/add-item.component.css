@@ -6,6 +6,10 @@
     margin-bottom: 50;
 }
 
+.logo{
+  height: 120;
+}
+
 .form {
     justify-content: flex-start;
     flex-direction: column;

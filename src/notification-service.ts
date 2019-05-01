@@ -22,10 +22,10 @@ export class NotificationService {
   schedule(x): void {
     let at = new Date(x.date.setHours(x.time.getHours(),x.time.getMinutes()))
     let id:number = x.id
-    console.log(id,"QUELLO CHE ARRIVA")
+    console.log(x.id,"QUELLO CHE ARRIVA")
     LocalNotifications.schedule(
         [{
-          id: id,
+          id: x.id,
           thumbnail: true,
           title:  x.title,
           body:  x.description,

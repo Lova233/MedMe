@@ -1,5 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd">
-  <FlexboxLayout class="form" flexDirection="column" justifyItem="space-between ">
+  <FlexboxLayout class="form" flexDirection="column" justifyItem="space-between" alignItem="center">
+      <Image src="res://logo2" stretch="none" class="img-rounded logo" decodeHeight="50" marginBottom="-50" marginTop="10"></Image>
     <label text="Add your medication" class="main-title"></label>
     <StackLayout class="input-field">
       <Label
@@ -27,17 +28,18 @@
     </StackLayout>
     <StackLayout class="input-field">
       <Label
-      class="label"
+      class="label labelbig"
       text="Select end treatment date"
       ></Label>
       <DatePickerField
       class="input"
       [(ngModel)]="date"
       returnKeyType="next"
+      [minDate]="minDates"
       >
     </DatePickerField>
     <Label
-    class="label"
+    class="labelbig"
     text="Schedule assumption time "
     dateFormat="'date': dd MMMM yyyy"
     ></Label>

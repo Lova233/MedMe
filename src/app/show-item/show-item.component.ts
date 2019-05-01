@@ -27,12 +27,8 @@ export class ShowItemComponent implements OnInit {
   }
 
   onItemTap(args) {
-    let num = this.meds[args.index].repetition
+    let num = this.meds[args.index].ids
     console.log(num,"IL NUM")
-    let i
-    for(i=0;i<=num;i++){
-        console.log("giro",i)
-    }
 
     dialogs.action({
         message: "Do you want to delete the medication   " + this.meds[args.index].title + "  ?",
@@ -42,8 +38,10 @@ export class ShowItemComponent implements OnInit {
         console.log("Dialog result: " + result);
         if(result == "Yes"){
             let param = this.meds[args.index].created
+            this.meds[args.index].ids.forEach((id)=>{
+                this.notificationService.cancel(id)
+            })
             this.medsService.deleteMeds(param)
-            this.notificationService.cancel(this.meds[args.index].created)
             this.meds.splice(args.index,1)
         }else if(result == "No"){
             //Do action2
