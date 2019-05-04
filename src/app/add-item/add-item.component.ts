@@ -29,7 +29,6 @@ export class AddItemComponent implements OnInit {
 
         ngOnInit() {
              this.minDates = this.formatMinDate(this.today)
-            console.log(this.minDates);
         }
 
         onSubmit(title: string, description: string, date:any, time:any) {
@@ -39,19 +38,20 @@ export class AddItemComponent implements OnInit {
             let i
             let notificationIds = []
             let num = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ) /(1000 * 60 * 60 * 24));
+            // notification obj
             for(i=0;i<=num;i++){
                 let a = {
                     title:title,
                     description:description,
                     time:time,
                     date: moment().add(i,"d").toDate(),
-                    id: Math.random(),
+                    id: Math.floor(Math.random()*5000),
                 }
                 notificationIds.push(a.id)
                 this.notificationService.schedule(a)
             }
-
             date = this.formatDate(date)
+            // db obj
             let x = {
                 title,
                 description,
@@ -69,7 +69,6 @@ export class AddItemComponent implements OnInit {
             this.description = ""
             this.time = undefined
             this.date = undefined
-            console.log(x,"Quello nel db")
         }
         formatDate(date) {
             var d = new Date(date),
@@ -93,10 +92,11 @@ export class AddItemComponent implements OnInit {
 
             return [year,month,day ].join('/');
         }
-
+        // cancell all notification
         cancel(){
             this.notificationService.cancelAll()
         }
+        // get all notification
         get(){
             this.notificationService.getAll()
         }

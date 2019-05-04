@@ -7,6 +7,9 @@
     font-size: 30;
     font-weight: bold;
 }
+.main{
+    background-image: url("res://tic");
+}
 
 .time{
     margin-top: 20;
