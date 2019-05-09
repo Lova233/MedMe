@@ -9,11 +9,6 @@ import { MedsServices } from "~/meds-service";
 export class AppComponent implements OnInit {
 
 
-    constructor(
-        ){}
-
-
-    ngOnInit() {
-
-    }
+    constructor(){}
+    ngOnInit() {}
 }

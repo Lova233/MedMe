@@ -28,30 +28,38 @@ export class AddItemComponent implements OnInit {
         {}
 
         ngOnInit() {
+             // initialize todays date and format in readable string
              this.minDates = this.formatMinDate(this.today)
-            console.log(this.minDates);
         }
 
         onSubmit(title: string, description: string, date:any, time:any) {
+            //extrapolate hours and minutes from time input
             let hour = time.getHours();
             let minutes = time.getMinutes();
+            // initialize current notification time in readable string
             let humanHuour = hour + ':' + (minutes < 10 ? '0' : '') + minutes
+            // create notification object and empty array where to store every related notification id
             let i
             let notificationIds = []
+            // calculate iteration number based on todays date and input date
             let num = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ) /(1000 * 60 * 60 * 24));
+            // create notification object
             for(i=0;i<=num;i++){
                 let a = {
                     title:title,
                     description:description,
                     time:time,
                     date: moment().add(i,"d").toDate(),
-                    id: Math.random(),
+                    id: Math.floor(Math.random()*5000),
                 }
+            // push notificationId to array
                 notificationIds.push(a.id)
+            // send notification to notification service
                 this.notificationService.schedule(a)
             }
-
+            // format input date in readable string
             date = this.formatDate(date)
+            // create db object
             let x = {
                 title,
                 description,
@@ -62,14 +70,17 @@ export class AddItemComponent implements OnInit {
                 ids: notificationIds,
                 repetition:num,
             }
+            // add medication to database
             this.medsService.addNewMeds(x)
+            // refresh layout
             this.refresh.emit(x);
+            // aler the user notification sended!
             alert("New Medication added")
+            // reset input field
             this.title = ""
             this.description = ""
             this.time = undefined
             this.date = undefined
-            console.log(x,"Quello nel db")
         }
         formatDate(date) {
             var d = new Date(date),
@@ -93,10 +104,11 @@ export class AddItemComponent implements OnInit {
 
             return [year,month,day ].join('/');
         }
-
+        // cancell all notification  - Testing
         cancel(){
             this.notificationService.cancelAll()
         }
+        // get all notification  -  Testing
         get(){
             this.notificationService.getAll()
         }
