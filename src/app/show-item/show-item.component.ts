@@ -21,8 +21,11 @@ export class ShowItemComponent implements OnInit {
         ) { }
 
   ngOnInit() {}
+<<<<<<< HEAD
 
   // pick the notification selected
+=======
+>>>>>>> 94ae482c5eb44a9a167172a74b3f76dc982f38a4
   onItemTap(args) {
     dialogs.action({
         message: "You are about to delete " + this.meds[args.index].title + " notifications",
@@ -41,7 +44,10 @@ export class ShowItemComponent implements OnInit {
             // refresh front end
             this.meds.splice(args.index,1)
         }else if(result == "No"){
+<<<<<<< HEAD
             // do nothing
+=======
+>>>>>>> 94ae482c5eb44a9a167172a74b3f76dc982f38a4
         }
     });
   }
