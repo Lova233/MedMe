@@ -43,11 +43,7 @@ export class AddItemComponent implements OnInit {
             let notificationIds = []
             // calculate iteration number based on todays date and input date
             let num = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ) /(1000 * 60 * 60 * 24));
-<<<<<<< HEAD
             // create notification object
-=======
-            // notification obj
->>>>>>> 94ae482c5eb44a9a167172a74b3f76dc982f38a4
             for(i=0;i<=num;i++){
                 let a = {
                     title:title,
@@ -61,14 +57,9 @@ export class AddItemComponent implements OnInit {
             // send notification to notification service
                 this.notificationService.schedule(a)
             }
-<<<<<<< HEAD
             // format input date in readable string
             date = this.formatDate(date)
             // create db object
-=======
-            date = this.formatDate(date)
-            // db obj
->>>>>>> 94ae482c5eb44a9a167172a74b3f76dc982f38a4
             let x = {
                 title,
                 description,
@@ -113,19 +104,11 @@ export class AddItemComponent implements OnInit {
 
             return [year,month,day ].join('/');
         }
-<<<<<<< HEAD
         // cancell all notification  - Testing
         cancel(){
             this.notificationService.cancelAll()
         }
         // get all notification  -  Testing
-=======
-        // cancell all notification
-        cancel(){
-            this.notificationService.cancelAll()
-        }
-        // get all notification
->>>>>>> 94ae482c5eb44a9a167172a74b3f76dc982f38a4
         get(){
             this.notificationService.getAll()
         }

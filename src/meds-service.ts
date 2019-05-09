@@ -20,15 +20,9 @@ addNewMeds(x){
     this.http.put('https://mymeds-21e9a.firebaseio.com/mymeds/'+ x.created + '.json',x)
     .subscribe(res => {
         console.log(res,"resssss");
-<<<<<<< HEAD
     });}
 //GET
 getNewMeds(){
-=======
-    });
-  }
-  getNewMeds(){
->>>>>>> 94ae482c5eb44a9a167172a74b3f76dc982f38a4
     return this.http.get<any[]>('https://mymeds-21e9a.firebaseio.com/mymeds.json')
     }
 //DELETE
@@ -36,9 +30,4 @@ deleteMeds(param){
     this.http.delete('https://mymeds-21e9a.firebaseio.com/mymeds/'+ param  + '.json').subscribe(res => {
         console.log(res);
     });
-<<<<<<< HEAD
     }}
-=======
-    }
-}
->>>>>>> 94ae482c5eb44a9a167172a74b3f76dc982f38a4
