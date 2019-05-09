@@ -1,16 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { take,tap } from 'rxjs/operators';
-import { Meds } from './meds-model';
-import { HttpClient } from '@angular/common/http'
-import { catchError } from 'rxjs/operators';
 import { LocalNotifications } from "nativescript-local-notifications";
-import { minuteIntervalProperty } from 'tns-core-modules/ui/time-picker/time-picker';
-
 
 
 @Injectable({ providedIn: 'root' })
-
 
 export class NotificationService {
     id:any;
@@ -20,17 +12,16 @@ export class NotificationService {
       });
  }
   schedule(x): void {
+    // format notification date
     let at = new Date(x.date.setHours(x.time.getHours(),x.time.getMinutes()))
-    let id:number = x.id
-    console.log(x.id,"QUELLO CHE ARRIVA")
+    // Create notification
     LocalNotifications.schedule(
         [{
           id: x.id,
           thumbnail: true,
-          title:  x.title,
+          title:  "Did you take " + x.title + " today?",
           body:  x.description,
           forceShowWhenInForeground: true,
-          interval: "second",
           at: at,
           image: "https://cdn-images-1.medium.com/max/1200/1*c3cQvYJrVezv_Az0CoDcbA.jpeg",
           actions: [
@@ -39,21 +30,15 @@ export class NotificationService {
               type: "button",
               launch: true,
               editable: true,
-              // choices: ["Red", "Yellow", "Green"] // TODO Android only, but yet to see it in action
             }
           ]
 
         }]
         )
         .then(() => {}).catch(error => console.log("doScheduleId5WithInput error: " + error));
-
-
-
-
-
-
-
   }
+
+    // Cancel all notification related to picked medication
         cancel(x){
             LocalNotifications.cancel(x).then(
                 function(foundAndCanceled) {
@@ -64,61 +49,16 @@ export class NotificationService {
                     }
                 }
             )
-            // LocalNotifications.getScheduledIds().then(
-            //     function(ids:number[]) {
-            //       console.log(ids.length-1,"dopo cancellarne");
-            //     }
         }
+        // cancell all notification  - Testing
         cancelAll(){
             LocalNotifications.cancelAll();
         }
+        // get all notification  -  Testing
         getAll(){
             LocalNotifications.getScheduledIds().then(
                 function(ids:number[]) {
-                  console.log(ids,"the one");
                 })
         }
 }
 
-
-  // createNewChallenge(title: string, description: string, frequency:number[]) {
-  //   const newChallenge = new Challenge(
-  //     title,
-  //     description,
-  //     frequency,
-  //     new Date().getFullYear(),
-  //     new Date().getMonth()
-  //   );
-  //   // Save it to server
-  //   this._currentChallenge.next(newChallenge);
-  // }
-
-  // updateChallenge(title: string, description: string, frequency:number[]) {
-  //   this._currentChallenge.pipe(take(1)).subscribe(challenge => {
-  //     const updatedChallenge = new Challenge(
-  //       title,
-  //       description,
-  //       frequency,
-  //       challenge.year,
-  //       challenge.month,
-  //       challenge.days
-  //     );
-  //     // Send to a server
-  //     this._currentChallenge.next(updatedChallenge);
-  //   });
-  // }
-
-  // updateDayStatus(dayInMonth: number, status: DayStatus) {
-  //   this._currentChallenge.pipe(take(1)).subscribe(challenge => {
-  //     if (!challenge || challenge.days.length < dayInMonth) {
-  //       return;
-  //     }
-  //     const dayIndex = challenge.days.findIndex(
-  //       d => d.dayInMonth === dayInMonth
-  //     );
-  //     challenge.days[dayIndex].status = status;
-  //     this._currentChallenge.next(challenge);
-  //     console.log(challenge.days[dayIndex]);
-  //     // Save this to a server
-  //   });
-  // }
