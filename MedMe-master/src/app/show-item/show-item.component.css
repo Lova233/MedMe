@@ -1,0 +1,26 @@
+.med-card{
+    padding:10 20 20 20;
+}
+.title{
+    font-size: 30;
+    font-weight: bold;
+}
+.main{
+    background-image: url("res://tic");
+}
+.time{
+    margin-top: 20;
+}
+.subtitle{
+    font-size: 20;
+    padding: 5 0 5 0;
+}
+.when{
+    padding: 5 0 5 0;
+}
+.first{
+    margin-right: 15;
+}
+.date{
+    margin-right: 10;
+}

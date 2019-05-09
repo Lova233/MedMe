@@ -1,0 +1,55 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd">
+  <FlexboxLayout class="form" flexDirection="column" justifyItem="space-between" alignItem="center">
+      <Image src="res://logo2" stretch="none" class="img-rounded logo" decodeHeight="50" marginBottom="-50" marginTop="10"></Image>
+    <label text="Add your medication" class="main-title"></label>
+    <StackLayout class="input-field">
+      <Label
+      text="Title"
+      ></Label>
+      <TextField
+      class="input"
+      returnKeyType="next"
+      required
+      [(ngModel)]="title"
+      ></TextField>
+    </StackLayout>
+    <StackLayout class="input-field">
+      <Label
+      text="Description"
+      ></Label>
+      <TextView
+      class="input"
+      returnKeyType="next"
+      required
+      [(ngModel)]="description"
+      ></TextView>
+    </StackLayout>
+    <StackLayout class="input-field">
+      <Label
+      text="Select end treatment date"
+      ></Label>
+      <DatePickerField
+      class="input"
+      [(ngModel)]="date"
+      returnKeyType="next"
+      [minDate]="minDates"
+      >
+    </DatePickerField>
+    <Label
+    text="Schedule assumption time "
+    dateFormat="'date': dd MMMM yyyy"
+    ></Label>
+    <TimePickerField
+    class="input"
+    [(ngModel)]="time"
+    returnKeyType="next"
+    >
+  </TimePickerField>
+</StackLayout>
+<Button
+class="btn btn-primary"
+text="Save"
+(tap)="onSubmit(title, description, date, time)"
+></Button>
+</FlexboxLayout>
+</Page>
